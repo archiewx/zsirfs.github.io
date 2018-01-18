@@ -8,25 +8,49 @@ node_js: stable
 # S: Build Lifecycle
 
 
+before_install:
+  - npm i -g hexo-cli
 # 安装依赖
 install:
-  - npm install hexo-cli -g
   - npm install
 
  # 部署命令
 script:
   - hexo clean
-  - hexo generate --deploy
+  - hexo generate
 
 # 提交内容及git 用户信息
-after_script:
+# after_script:
+#   - cd ./public
+#   - git add .
+#   - git commit -m ''
+#   - git push --quiet --force https://$REPO_TOKEN@github.com/zsirfs/zsirfs.github.io.git master
 # E: Build LifeCycle
+
+before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "zsirfs"
+  - git config --local user.email "zhenglfsir@gmail.com"
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+
+deploy:
+  provider: release
+  skip-cleanup: true
+  file_glob: true
+  file: public/*
+  api-key: $REPO_TOKEN
+  keep-history: true
+  on:
+    tags: true
 
 
 # 项目所在分支
 branches:
   only:
     - src
+cache:
+  directories:
+    - "node_modules"
 
 # 项目git地址	
 env:

@@ -91,7 +91,7 @@ since: 2017
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://${REPO_TOKEN}@github.com/zsirfs/zsirfs.github.io.git
+  repo: https://github.com/zsirfs/zsirfs.github.io.git
   branch: master
   
 algolia:

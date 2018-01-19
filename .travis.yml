@@ -40,9 +40,7 @@ deploy:
   skip-cleanup: true
   local-dir: public
   keep-history: true
-  # fqdn: https://blog.wangxdog.cn
   github-token: $GITHUB_TOKEN
-  # repo: zsirfs.github.io
   target-branch: master
   on:
     all_branches: true

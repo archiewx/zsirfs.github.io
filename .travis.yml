@@ -43,6 +43,7 @@ deploy:
   email: zhenglfsir@gmail.com
   name: 'zsirfs'
   skip-cleanup: true
+  fqdn: https://blog.wangxdog.cn
   local-dir: public
   keep-history: true
   github-token: $GITHUB_TOKEN

@@ -42,7 +42,7 @@ deploy:
   keep-history: true
   fqdn: https://blog.wangxdog.cn
   github-token: $GITHUB_TOKEN
-  repo: $GH_REPO 
+  # repo: zsirfs.github.io
   target-branch: master
   on:
     all_branches: true
@@ -58,4 +58,3 @@ cache:
 # 项目git地址	
 env:
  global:
-   - GH_REPO: github.com/zsirfs/zsirfs.github.io

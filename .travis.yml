@@ -45,6 +45,8 @@ deploy:
   github-token: $GITHUB_TOKEN
   repo: $GH_REPO 
   target-branch: master
+  on:
+    all_branches: true
 
 # 项目所在分支
 branches:

@@ -42,7 +42,8 @@ deploy:
   local-dir: public/*
   keep-history: true
   fqdn: https://blog.wangxdog.cn
-  github-token: $REPO_TOKEN
+  github-token: $GITHUB_TOKEN
+  repo: $GH_REPO 
   target-branch: master
 
 # 项目所在分支
@@ -56,4 +57,4 @@ cache:
 # 项目git地址	
 env:
  global:
-   - GH_REF: github.com/zsirfs/zsirfs.github.io.git
+   - GH_REPO: github.com/zsirfs/zsirfs.github.io.git

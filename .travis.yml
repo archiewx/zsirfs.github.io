@@ -10,6 +10,9 @@ node_js: stable
 
 before_install:
   - npm i -g hexo-cli
+  - git clone https://github.com/iissnan/hexo-theme-next themes/next
+  - cp conf/next/_next_config.yml themes/next/_config.yml
+  - cp conf/next/custom.styl themes/next/source/css/_variables/custom.styl
 # 安装依赖
 install:
   - npm install

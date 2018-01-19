@@ -58,4 +58,4 @@ cache:
 # 项目git地址	
 env:
  global:
-   - GH_REPO: github.com/zsirfs/zsirfs.github.io.git
+   - GH_REPO: github.com/zsirfs/zsirfs.github.io

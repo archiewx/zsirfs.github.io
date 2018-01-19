@@ -27,11 +27,12 @@ script:
 #   - git push --quiet --force https://$REPO_TOKEN@github.com/zsirfs/zsirfs.github.io.git master
 # E: Build LifeCycle
 
-# before_deploy:
-#   # Set up git user name and tag this commit
-#   - git config --local user.name "zsirfs"
-#   - git config --local user.email "zhenglfsir@gmail.com"
-#   - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+before_deploy:
+  # Set up git user name and tag this commit
+  - cd ./public
+  - git init
+  - git config --local user.name "zsirfs"
+  - git config --local user.email "zhenglfsir@gmail.com"
 
 deploy:
   provider: pages
@@ -39,7 +40,7 @@ deploy:
   name: 'zsirfs'
   skip-cleanup: true
   local-dir: public
-  # keep-history: true
+  keep-history: true
   github-token: $GITHUB_TOKEN
   target-branch: master
   on:

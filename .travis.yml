@@ -13,7 +13,7 @@ before_install:
   - git clone https://github.com/iissnan/hexo-theme-next themes/next
   - cp conf/next/_next_config.yml themes/next/_config.yml
   - cp conf/next/custom.styl themes/next/source/css/_variables/custom.styl
-  - cp -r conf/next/uploads themes/next/sources
+  - cp -r conf/next/uploads themes/next/source
 # 安装依赖
 install:
   - npm install

@@ -38,8 +38,8 @@ deploy:
   email: zhenglfsir@gmail.com
   name: 'zsirfs'
   skip-cleanup: true
-  local-dir: public/*
-  keep-history: true
+  local-dir: public
+  # keep-history: true
   github-token: $GITHUB_TOKEN
   target-branch: master
   on:

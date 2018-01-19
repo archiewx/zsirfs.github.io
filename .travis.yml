@@ -43,6 +43,8 @@ deploy:
   keep-history: true
   github-token: $GITHUB_TOKEN
   target-branch: master
+  project-name: zsirfs.github.io
+  verbose: true
   on:
     all_branches: true
 

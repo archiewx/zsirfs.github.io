@@ -27,22 +27,23 @@ script:
 #   - git push --quiet --force https://$REPO_TOKEN@github.com/zsirfs/zsirfs.github.io.git master
 # E: Build LifeCycle
 
-before_deploy:
-  # Set up git user name and tag this commit
-  - git config --local user.name "zsirfs"
-  - git config --local user.email "zhenglfsir@gmail.com"
-  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+# before_deploy:
+#   # Set up git user name and tag this commit
+#   - git config --local user.name "zsirfs"
+#   - git config --local user.email "zhenglfsir@gmail.com"
+#   - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
 deploy:
-  provider: release
+  provider: pages
+  email: zhenglfsir@gmail.com
+  name: 'zsirfs'
   skip-cleanup: true
   file_glob: true
-  file: public/*
-  api-key: $REPO_TOKEN
+  local-dir: public/*
   keep-history: true
-  on:
-    tags: true
-
+  fqdn: https://blog.wangxdog.cn
+  github-token: $REPO_TOKEN
+  target-branch: master
 
 # 项目所在分支
 branches:

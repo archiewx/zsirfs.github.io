@@ -11,6 +11,8 @@ categories:
 
 > 最近发现meta标签用处挺多，然后去查看了一下，故此下文
 
+<!-- more -->
+
 ```html
 <!DOCTYPE html> <!-- 使用 HTML5 doctype，不区分大小写 -->
 <html lang="zh-cmn-Hans"> <!-- 更加标准的 lang 属性写法 http://zhi.hu/XyIa -->

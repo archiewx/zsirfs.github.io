@@ -8,6 +8,40 @@ tags:
 categories:
   - tech
   - nodejs
+description: <blockquote class="blockquote-center">
+  使用hexo + next 主题搭建一个炫酷的GitHub Page 网站
+</blockquote>
 ---
 
-> 大家好，马上补充
+> 说明: GitHub Page 利用 GitHub 仓库来搭建静态博客，使用 travis 实现自动化部署，使用 next 主题让画面更炫酷,需要 nodejs 环境哦
+> 关于next-theme 第三方服务，详细请看next主题使用
+
+## 1. 准备工作
+
+### nodejs 和 npm 安装
+
+### 安装 hexo-cli
+
+
+### 注册Github 
+
+
+### 注册 Travis.org
+
+## 2. 安装依赖, 基本配置
+
+### 安装 next 主题
+
+### 配置 next 主题 
+
+
+### 配置 travis
+
+
+### 提交代码到GitHub分支, 实现自动化
+
+## 3. 自定义hexo博客
+
+## 总结
+
+  通过本次搭建自己hexo博客，打算将自己博客移动到这里，专心做一个技术分享博客，一方面总结自己所学习的东西，另外就是分享，相互学习，提高水平

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.wangxdog.cn/"/>
-  <updated>2018-01-22T08:40:40.151Z</updated>
+  <updated>2018-01-22T08:44:20.973Z</updated>
   <id>https://blog.wangxdog.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.wangxdog.cn/2018/01/22/%E5%8C%96%E8%8C%A7%E6%88%90%E8%9D%B6%E4%B9%8Bvue/"/>
     <id>https://blog.wangxdog.cn/2018/01/22/化茧成蝶之vue/</id>
     <published>2018-01-22T16:29:54.000Z</published>
-    <updated>2018-01-22T08:40:40.151Z</updated>
+    <updated>2018-01-22T08:44:20.973Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>之前本来要来贡献自己的见解一直没时间，现在乘着大年期间来分享一波</p></blockquote>]]></content>
     
@@ -47,11 +47,37 @@
   </entry>
   
   <entry>
+    <title>使用hexo+next+travis部署Github博客</title>
+    <link href="https://blog.wangxdog.cn/2018/01/18/%E4%BD%BF%E7%94%A8hexo-next-travis%E9%83%A8%E7%BD%B2Github%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://blog.wangxdog.cn/2018/01/18/使用hexo-next-travis部署Github博客/</id>
+    <published>2018-01-18T18:25:48.000Z</published>
+    <updated>2018-01-22T08:44:20.973Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>说明: GitHub Page 利用 GitHub 仓库来搭建静态博客，使用 travis 实现自动化部署，使用 next 主题让画面更炫酷,需要 nodejs 环境哦关于 next-theme 第三方服务，详细请看 next 主题使用</p></blockquote><h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><h3 id="nodejs-和-npm-安装"><a href="#nodejs-和-npm-安装" class="headerlink" title="nodejs 和 npm 安装"></a>nodejs 和 npm 安装</h3><h3 id="安装-hexo-cli"><a href="#安装-hexo-cli" class="headerlink" title="安装 hexo-cli"></a>安装 hexo-cli</h3><h3 id="注册-Github"><a href="#注册-Github" class="headerlink" title="注册 Github"></a>注册 Github</h3><h3 id="注册-Travis-org"><a href="#注册-Travis-org" class="headerlink" title="注册 Travis.org"></a>注册 Travis.org</h3><h2 id="2-安装依赖-基本配置"><a href="#2-安装依赖-基本配置" class="headerlink" title="2. 安装依赖, 基本配置"></a>2. 安装依赖, 基本配置</h2><h3 id="安装-next-主题"><a href="#安装-next-主题" class="headerlink" title="安装 next 主题"></a>安装 next 主题</h3><h3 id="配置-next-主题"><a href="#配置-next-主题" class="headerlink" title="配置 next 主题"></a>配置 next 主题</h3><h3 id="配置-travis"><a href="#配置-travis" class="headerlink" title="配置 travis"></a>配置 travis</h3><h3 id="提交代码到-GitHub-分支-实现自动化"><a href="#提交代码到-GitHub-分支-实现自动化" class="headerlink" title="提交代码到 GitHub 分支, 实现自动化"></a>提交代码到 GitHub 分支, 实现自动化</h3><h2 id="3-自定义-hexo-博客"><a href="#3-自定义-hexo-博客" class="headerlink" title="3. 自定义 hexo 博客"></a>3. 自定义 hexo 博客</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过本次搭建自己 hexo 博客，打算将自己博客移动到这里，专心做一个技术分享博客，一方面总结自己所学习的东西，另外就是分享，相互学习，提高水平</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;使用hexo + next 主题搭建一个炫酷的GitHub Page 网站&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="tech" scheme="https://blog.wangxdog.cn/categories/tech/"/>
+    
+      <category term="nodejs" scheme="https://blog.wangxdog.cn/categories/tech/nodejs/"/>
+    
+    
+      <category term="hexo" scheme="https://blog.wangxdog.cn/tags/hexo/"/>
+    
+      <category term="travis" scheme="https://blog.wangxdog.cn/tags/travis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Since chose the distance</title>
     <link href="https://blog.wangxdog.cn/2018/01/18/Since-chose-the-distance/"/>
     <id>https://blog.wangxdog.cn/2018/01/18/Since-chose-the-distance/</id>
     <published>2018-01-18T14:32:18.000Z</published>
-    <updated>2018-01-22T08:40:40.151Z</updated>
+    <updated>2018-01-22T08:44:20.973Z</updated>
     
     <content type="html"><![CDATA[<h2 id="2013"><a href="#2013" class="headerlink" title="2013"></a>2013</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello World"</span>)</span><br></pre></td></tr></table></figure><p>我的2013 学习 <code>Hello World</code></p><h2 id="2014"><a href="#2014" class="headerlink" title="2014"></a>2014</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.print(<span class="string">"Hello World"</span>)</span><br></pre></td></tr></table></figure><p>我的 2014 使用 <code>Java</code>学习Hello World</p><h2 id="2015"><a href="#2015" class="headerlink" title="2015"></a>2015</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">"Hello World"</span>)</span><br></pre></td></tr></table></figure><p>2015 用JS 写Hello World</p><h2 id="2016"><a href="#2016" class="headerlink" title="2016"></a>2016</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Hello World"</span>)</span><br></pre></td></tr></table></figure><p>2016 用上了Python</p><h2 id="2017"><a href="#2017" class="headerlink" title="2017"></a>2017</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...</span><br></pre></td></tr></table></figure><p>2017 已经过了</p><h2 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> future = <span class="string">"Too good, too difficult to describe"</span></span><br><span class="line"><span class="keyword">const</span> everyDateIsGood = <span class="literal">true</span></span><br><span class="line"><span class="keyword">if</span>(everyDateIsGood) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(futer) <span class="comment">// 每一天都充满了喜感</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>2018 从头再开…</p>]]></content>
     

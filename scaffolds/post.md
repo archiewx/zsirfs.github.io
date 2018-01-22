@@ -1,4 +1,5 @@
 ---
+layout: 'po:st'
 title: {{ title }}
 date: {{ date }}
 tags: 

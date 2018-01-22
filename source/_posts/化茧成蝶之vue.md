@@ -1,4 +1,5 @@
 ---
+layout: 'po:st'
 title: 化茧成蝶之vue(1)
 description: <blockquote class="blockquote-center">vue 渐进式JavaScript 框架, GitHub雄霸6w多star，必须要学啊</blockquote>
 date: 2018-01-22 16:29:54

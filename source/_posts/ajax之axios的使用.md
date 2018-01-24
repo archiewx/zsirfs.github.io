@@ -14,6 +14,8 @@ categories:
 
 > axios 是一个 Promise 的 ajax 库，同时支持浏览器和 nodejs 服务器，使用 axios 可以轻松的发送 GET/POST 请求,同时可以附加很多额外的功能，比如拦截器, 认证，代理，状态校验等
 
+<!-- more -->
+
 ## 安装
 
 > axios 的[GitHub 库](https://github.com/axios/axios)的地址,[点击这里](https://github.com/axios/axios)

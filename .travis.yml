@@ -24,20 +24,7 @@ script:
   - hexo generate
   - hexo algolia
 
-# 提交内容及git 用户信息
-# after_script:
-#   - cd ./public
-#   - git add .
-#   - git commit -m ''
-#   - git push --quiet --force https://$REPO_TOKEN@github.com/zsirfs/zsirfs.github.io.git master
-# E: Build LifeCycle
-
 before_deploy:
-  # Set up git user name and tag this commit
-  # - cd ./public
-  # - git init
-  # - git config --local user.name "zsirfs"
-  # - git config --local user.email "zhenglfsir@gmail.com"
 
 deploy:
   provider: pages

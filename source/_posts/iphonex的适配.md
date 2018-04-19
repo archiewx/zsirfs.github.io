@@ -12,8 +12,8 @@ iphonx 适配，下面就详细说说如何适配
 
 <!-- more -->
 
-先看一张适配前后的图: [](http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524115029816.jpg)
-[](http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524114909262.jpg)
+先看一张适配前后的图: ![](http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524115029816.jpg)
+![](http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524114909262.jpg)
 
 ## iphonex 提供的 meta 头
 
@@ -35,7 +35,7 @@ iphonx 适配，下面就详细说说如何适配
 
 默认值和 contain 一样
 
-详细见下图(无耻盗图): [](http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524114553748.jpg)
+详细见下图(无耻盗图): ![](http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524114553748.jpg)
 
 > 注意：网页默认不添加扩展的表现是 viewport-fit=contain，需要适配 iPhoneX 必须设置
 > viewport-fit=cover，这是适配的关键步骤。
@@ -93,7 +93,7 @@ padding-top: constant(safe-area-inset-top);
 padding-top: env(safe-area-inset-top);
 ```
 
-看下图: [](http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524115956774.jpg)
+看下图: ![](http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524115956774.jpg)
 
 ### 兼容代码
 

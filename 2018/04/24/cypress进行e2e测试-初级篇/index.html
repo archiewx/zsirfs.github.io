@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="zsirfs的个人小站, 前端工程师, 菜鸟基地" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zsirfs の个人小站" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="cypress 进行 e2e 测试之理论cypress 是目前 e2e 很火的一个测试组件，内部绑定了 macha、chai、chai-jquery 之类的断言,为了让代码代码更有说服力，减少提交测试错误，进行 e2e 测试显然是非常有必要的。  官网 \GitHub  借鉴官网一句话来说:  Cypress is a next generation front end testing tool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cypress进行e2e测试之理论">
+<meta property="og:url" content="https://blog.wangxdog.cn/2018/04/24/cypress进行e2e测试-初级篇/index.html">
+<meta property="og:site_name" content="zsirfs の个人小站">
+<meta property="og:description" content="cypress 进行 e2e 测试之理论cypress 是目前 e2e 很火的一个测试组件，内部绑定了 macha、chai、chai-jquery 之类的断言,为了让代码代码更有说服力，减少提交测试错误，进行 e2e 测试显然是非常有必要的。  官网 \GitHub  借鉴官网一句话来说:  Cypress is a next generation front end testing tool">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524630068200.jpg">
+<meta property="og:image" content="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524723249070.jpg">
+<meta property="og:image" content="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524723515804.jpg">
+<meta property="og:image" content="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524724620147.jpg">
+<meta property="og:image" content="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524734614828.jpg">
+<meta property="og:image" content="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524734935768.jpg">
+<meta property="og:image" content="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524795818095.jpg">
+<meta property="og:updated_time" content="2018-04-27T03:03:46.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cypress进行e2e测试之理论">
+<meta name="twitter:description" content="cypress 进行 e2e 测试之理论cypress 是目前 e2e 很火的一个测试组件，内部绑定了 macha、chai、chai-jquery 之类的断言,为了让代码代码更有说服力，减少提交测试错误，进行 e2e 测试显然是非常有必要的。  官网 \GitHub  借鉴官网一句话来说:  Cypress is a next generation front end testing tool">
+<meta name="twitter:image" content="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524630068200.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'XRCSG0PRMD',
+      apiKey: 'd01d827b44b76321452ab679a3163ef6',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"元气满满，come on ...","hits_empty":"小站暂时没有捕获您需要东西 ${query}","hits_stats":"报告殿下, 小子发现了${hits}条结果, 用时 ${time} ms, 记得奖励我哦"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.wangxdog.cn/2018/04/24/cypress进行e2e测试-初级篇/"/>
+
+
+
+
+
+  <title>cypress进行e2e测试之理论 | zsirfs の个人小站</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?822bb77f5a13e228afc01a4485d0313b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zsirfs の个人小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">异于常人</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.wangxdog.cn/2018/04/24/cypress进行e2e测试-初级篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zsirfs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/迷幻.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zsirfs の个人小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">cypress进行e2e测试之理论</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T18:29:28+00:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/24/cypress进行e2e测试-初级篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/24/cypress进行e2e测试-初级篇/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/24/cypress进行e2e测试-初级篇/" class="leancloud_visitors" data-flag-title="cypress进行e2e测试之理论">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="cypress-进行-e2e-测试之理论"><a href="#cypress-进行-e2e-测试之理论" class="headerlink" title="cypress 进行 e2e 测试之理论"></a>cypress 进行 e2e 测试之理论</h1><p>cypress 是目前 e2e 很火的一个测试组件，内部绑定了 macha、chai、chai-jquery 之类的断言,为了让代码代码<br>更有说服力，减少提交测试错误，进行 e2e 测试显然是非常有必要的。</p>
+<blockquote>
+<p><a href="https://docs.cypress.io" target="_blank" rel="noopener">官网</a> \<br><a href="https://github.com/cypress-io/cypress" target="_blank" rel="noopener">GitHub</a></p>
+</blockquote>
+<p>借鉴官网一句话来说:</p>
+<blockquote>
+<p>Cypress is a next generation front end testing tool built for the modern web. We address the key<br>pain points developers and QA engineers face when testing modern applications.</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="本文环境"><a href="#本文环境" class="headerlink" title="本文环境"></a>本文环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node v9.5\</span><br><span class="line">npm v5.5</span><br></pre></td></tr></table></figure>
+<h2 id="e2e-简介"><a href="#e2e-简介" class="headerlink" title="e2e 简介"></a>e2e 简介</h2><p>e2e 测试端对端测试的简称, e2e 即为<code>end to end</code>,<br><a href="https://baike.baidu.com/item/E2E/9812039" target="_blank" rel="noopener">指任意一个人的社交、交易、休闲都可以直接与另外任意一个人产生关系，去中心化、渠道化</a>.</p>
+<h2 id="cypress"><a href="#cypress" class="headerlink" title="cypress"></a>cypress</h2><h3 id="cypress-环境搭建"><a href="#cypress-环境搭建" class="headerlink" title="cypress 环境搭建"></a>cypress 环境搭建</h3><p>做前端怎么少的多的了 npm 呢</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -D cypress</span><br></pre></td></tr></table></figure>
+<p>然后为了方便起见，咱们在<code>package.json</code>中写入下面脚本:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"e2e:open"</span>: <span class="string">"cypress open"</span>,</span><br><span class="line">    <span class="attr">"e2e:run"</span>: <span class="string">"cypress run"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524630068200.jpg" alt=""></p>
+<p>运行<code>npm run e2e:open</code>,启动一个 cypress 的服务器，如下:<br><img src="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524723249070.jpg" alt=""></p>
+<p>如下图这就完成了一个启动一个 cypress。第一次点开时候，cypress 会帮你创建一个初始化配置目录，这是<br>cypress 推荐的目录的结构，当然也可以自己创建。</p>
+<p><img src="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524723515804.jpg" alt=""></p>
+<p>点击 example_spec.js 文件，然后可以看到如下界面,cypress 开始测试:</p>
+<p><img src="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524724620147.jpg" alt=""></p>
+<p>上面就看到 cypress 的运行过程了。下面看看 example_spec.js(文件的位置<br>:projectName/cypress/integration)文件中写了啥:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'Kitchen Sink'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  it(<span class="string">'.should() - assert that &lt;title&gt; is correct'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这是主要结构的，下面大部分都是在一个<code>it</code>函数内部，是测试里面的回调函数。详细可以查看 TDD 和 BDD 测试<br>框架，cypress 绑定了这些测试框架。</p>
+<h2 id="cy-visit"><a href="#cy-visit" class="headerlink" title="cy.visit"></a>cy.visit</h2><p>这是 cypress 里面一个很重要的方法，可以访问一个链接,列入 example.js 文件如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">beforeEach(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Visiting our app before each test removes any state build up from</span></span><br><span class="line">  <span class="comment">// previous tests. Visiting acts as if we closed a tab and opened a fresh one</span></span><br><span class="line">  cy.visit(<span class="string">'https://example.cypress.io/commands/querying'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这里就是在前置钩子函数里面访问了<code>https://...../querying</code>这个链接。如果代码需要浏览器调试，比如用户交<br>互点击，用户输入之类的。第一步就是访问：cy.visit</p>
+<h2 id="cy-get"><a href="#cy-get" class="headerlink" title="cy.get"></a>cy.get</h2><p>还是从 example_spec.js 问中说起：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">'cy.get() - query DOM elements'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// https://on.cypress.io/get</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Get DOM elements by id</span></span><br><span class="line">  cy.get(<span class="string">'#query-btn'</span>).should(<span class="string">'contain'</span>, <span class="string">'Button'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Get DOM elements by class</span></span><br><span class="line">  cy.get(<span class="string">'.query-btn'</span>).should(<span class="string">'contain'</span>, <span class="string">'Button'</span>)</span><br><span class="line"></span><br><span class="line">  cy.get(<span class="string">'#querying .well&gt;button:first'</span>).should(<span class="string">'contain'</span>, <span class="string">'Button'</span>)</span><br><span class="line">  <span class="comment">//              ↲</span></span><br><span class="line">  <span class="comment">// Use CSS selectors just like jQuery</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这里定义了一个测试单元，在这个里面做了啥呢？第一步获取 id 为 query-btn 这个按钮。接下来 should 操作<br>，奉上一张表自行查看: <img src="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524734614828.jpg" alt=""></p>
+<p>cy.get 还有一个玩法就是 cy.get(‘@app’)这种，意思说之前你已经<code>cy.get(&#39;.app&#39;).as(&#39;app&#39;)</code>,不需要再次获<br>取了，直接使用别名就好了</p>
+<p>从官网截图的表格，详<br>细<a href="https://docs.cypress.io/guides/references/assertions.html#Chai-jQuery" target="_blank" rel="noopener">jquery-chai 文档表格</a></p>
+<p>这里看到<code>cy.get()</code>和<code>jquery.$</code>是不是很像，在官网这里说了这样一句话:</p>
+<blockquote>
+<p>The querying behavior of this command matches exactly how $(…) works in jQuery.</p>
+</blockquote>
+<p>所以可以将 cy.get()当$一样来用即可，不过这里返回的不过 jquery 对象罢了，这里返回的事通过 cypress 包<br>装过的对象可以在控制台看到这样的东西,见下图:<br><img src="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524734935768.jpg" alt=""></p>
+<p>是一个用于 cypress 所有方法的对象。然后可以操作他的 api 了。</p>
+<p>第一部分，主要是查询，查询页面元素是否按照我们开发想要的存在，下面看第二部分:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">context(<span class="string">'Actions'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  beforeEach(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    cy.visit(<span class="string">'https://example.cypress.io/commands/actions'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Let's perform some actions on DOM elements</span></span><br><span class="line">  <span class="comment">// https://on.cypress.io/interacting-with-elements</span></span><br><span class="line"></span><br><span class="line">  it(<span class="string">'.type() - type into a DOM element'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// https://on.cypress.io/type</span></span><br><span class="line">    cy</span><br><span class="line">      .get(<span class="string">'.action-email'</span>)</span><br><span class="line">      .type(<span class="string">'fake@email.com'</span>)</span><br><span class="line">      .should(<span class="string">'have.value'</span>, <span class="string">'fake@email.com'</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment">// .type() with special character sequences</span></span><br><span class="line">      .type(<span class="string">'&#123;leftarrow&#125;&#123;rightarrow&#125;&#123;uparrow&#125;&#123;downarrow&#125;'</span>)</span><br><span class="line">      .type(<span class="string">'&#123;del&#125;&#123;selectall&#125;&#123;backspace&#125;'</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment">// .type() with key modifiers</span></span><br><span class="line">      .type(<span class="string">'&#123;alt&#125;&#123;option&#125;'</span>) <span class="comment">//these are equivalent</span></span><br><span class="line">      .type(<span class="string">'&#123;ctrl&#125;&#123;control&#125;'</span>) <span class="comment">//these are equivalent</span></span><br><span class="line">      .type(<span class="string">'&#123;meta&#125;&#123;command&#125;&#123;cmd&#125;'</span>) <span class="comment">//these are equivalent</span></span><br><span class="line">      .type(<span class="string">'&#123;shift&#125;'</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Delay each keypress by 0.1 sec</span></span><br><span class="line">      .type(<span class="string">'slow.typing@email.com'</span>, &#123; <span class="attr">delay</span>: <span class="number">100</span> &#125;)</span><br><span class="line">      .should(<span class="string">'have.value'</span>, <span class="string">'slow.typing@email.com'</span>)</span><br><span class="line"></span><br><span class="line">    cy</span><br><span class="line">      .get(<span class="string">'.action-disabled'</span>)</span><br><span class="line">      <span class="comment">// Ignore error checking prior to type</span></span><br><span class="line">      <span class="comment">// like whether the input is visible or disabled</span></span><br><span class="line">      .type(<span class="string">'disabled error checking'</span>, &#123; <span class="attr">force</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">      .should(<span class="string">'have.value'</span>, <span class="string">'disabled error checking'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这一部分主要是进行获取元素交互, 下面来说交互是如何搞得。 与 cy.get 相似还有:</p>
+<ul>
+<li>cy.contains 通过文本获取元素</li>
+<li>cy.closet 见 jqery</li>
+<li>cy.next/cy.nextAll 可以和 cy.contains 联合使用获取该节点的下一个节点</li>
+<li>cy.prev/cy.prevAll 同上</li>
+<li>cy.children/cy.parents/cy.parent 获取子节点/ 所有的父节点 / 父节点</li>
+<li>cy.first/cy.last</li>
+<li>cy.url 获取当前页面 url</li>
+<li>cy.title 获取当前页面标题</li>
+<li>… API 挺多的，同样奉<br>上<a href="https://docs.cypress.io/api/commands/type.html#Key-Combinations" target="_blank" rel="noopener">api 文档</a></li>
+</ul>
+<h2 id="cypress-交互逻辑"><a href="#cypress-交互逻辑" class="headerlink" title="cypress 交互逻辑"></a>cypress 交互逻辑</h2><p>既然要交互肯定需要点击输入滚动，可以还存在拖拽等等。咱们就暂时从输入开始说起啦</p>
+<h3 id="cy-type"><a href="#cy-type" class="headerlink" title="cy.type"></a>cy.type</h3><p>这不是一个可以直接使用的方法，要配合<code>cy.get</code>使用的,作用是给空间进行输入。例如:</p>
+<h4 id="测试输入例如-text-textarea"><a href="#测试输入例如-text-textarea" class="headerlink" title="测试输入例如 text, textarea"></a>测试输入例如 text, textarea</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.get(<span class="string">'input'</span>).type(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="测试-tabIndex"><a href="#测试-tabIndex" class="headerlink" title="测试 tabIndex"></a>测试 tabIndex</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el"</span> <span class="attr">tabIndex</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  This is TabIndex div.</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.get(<span class="string">'.el'</span>).type(<span class="string">'laldkadaljdkljasf'</span>) <span class="comment">// 这个里面是随机字符串</span></span><br></pre></td></tr></table></figure>
+<h4 id="测试-input-为日期的"><a href="#测试-input-为日期的" class="headerlink" title="测试 input 为日期的"></a>测试 input 为日期的</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.get(<span class="string">'input[type=date]'</span>).type(<span class="string">'2008-8-9'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="键盘绑定"><a href="#键盘绑定" class="headerlink" title="键盘绑定"></a>键盘绑定</h4><p>下面直接是对 input 进行组合键盘操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.get(<span class="string">'input'</span>).type(<span class="string">'&#123;shift&#125;&#123;alt&#125;Q'</span>)</span><br></pre></td></tr></table></figure>
+<p>按住键盘操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.get(<span class="string">'input'</span>).type(<span class="string">'&#123;alt&#125;这里是按了一下alt后输入的内容'</span>)</span><br></pre></td></tr></table></figure>
+<p>还有长按键盘之类的操作，详细就看官网了这里之类奉上链<br>接<a href="https://docs.cypress.io/api/commands/type.html#Key-Combinations" target="_blank" rel="noopener">https://docs.cypress.io/api/commands/type.html#Key-Combinations</a></p>
+<p>这里就是关于键盘的组合操作。</p>
+<h4 id="对于选择例如-radio-checkbox"><a href="#对于选择例如-radio-checkbox" class="headerlink" title="对于选择例如 radio, checkbox"></a>对于选择例如 radio, checkbox</h4><p>这些就只需要利用点击事件即可，如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cy</span><br><span class="line">  .get(<span class="string">'input[type=radio]'</span>)</span><br><span class="line">  .as(<span class="string">'radio'</span>)</span><br><span class="line">  .click()</span><br><span class="line">cy.get(<span class="string">'@radio'</span>).should(<span class="string">'be.checked'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="定时"><a href="#定时" class="headerlink" title="定时"></a>定时</h3><h4 id="cy-wait"><a href="#cy-wait" class="headerlink" title="cy.wait"></a>cy.wait</h4><p>下面是等待 1s</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.wait(<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="cy-clock-和-cy-tick"><a href="#cy-clock-和-cy-tick" class="headerlink" title="cy.clock 和 cy.tick"></a>cy.clock 和 cy.tick</h4><p>自己的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> seconds = <span class="number">0</span></span><br><span class="line">setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  $(<span class="string">'#seconds-elapsed'</span>).text(++seconds + <span class="string">' seconds'</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<p>测试代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cy.clock()</span><br><span class="line">cy.visit(<span class="string">'/index.html'</span>)</span><br><span class="line">cy.tick(<span class="number">1000</span>)</span><br><span class="line">cy.get(<span class="string">'#seconds-elapsed'</span>).should(<span class="string">'have.text'</span>, <span class="string">'1 seconds'</span>)</span><br><span class="line">cy.tick(<span class="number">1000</span>)</span><br><span class="line">cy.get(<span class="string">'#seconds-elapsed'</span>).should(<span class="string">'have.text'</span>, <span class="string">'2 seconds'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://ojgquc007.bkt.clouddn.com/dragon-qiniu/1524795818095.jpg" alt=""> 这里就会出现关于 clock 和 tick<br>的用法，更多用法看文档，我也有部分迷惑的。待后来再解决。老规矩文档地址:<br><a href="https://docs.cypress.io/api/commands/clock.html#Now" target="_blank" rel="noopener">地址</a></p>
+<h3 id="关于-cypress-的配置"><a href="#关于-cypress-的配置" class="headerlink" title="关于 cypress 的配置"></a>关于 cypress 的配置</h3><p>先复制一段出来:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"baseUrl"</span>: <span class="string">"http://localhost:8080"</span>,</span><br><span class="line">  <span class="attr">"pageLoadTimeout"</span>: <span class="number">3000</span>,</span><br><span class="line">  <span class="attr">"viewportHeight"</span>: <span class="number">667</span>,</span><br><span class="line">  <span class="attr">"viewportWidth"</span>: <span class="number">375</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个非常精简的配置了:</p>
+<ul>
+<li>baseUrl 基础链接，之后在是使用 cy.visit 的时候，只需要访问具体路由例如: cy.visit(‘/Hello’)</li>
+<li>viewport 两个属性<ul>
+<li>viewportHeight 测试窗口的高度</li>
+<li>viewportWidth 测试窗口的宽度</li>
+</ul>
+</li>
+<li>pageLoadTimeout 页面家安在超过 3000ms 即为超时。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面是 cypress 的基本用法，cypress 是基于 electron 的一个测试框架，提供 web 环境进行点对点的测试，在<br>programer 思维下，进行自动化的交互操作，必要点检测说明，这是一个非常棒的用处。例如之后拥有数据埋点，<br>可以在固定的位置检测是否有埋点。测试想要的地方是否匹配的数据。模拟用户的点击操作，这都是非常棒的。在<br>jquery 操作年代，各种 id 和 class 奇怪命名下，这些都可以容易找到，在 vue 和 react 大行其道的年代，但<br>是却可以通过文本寻找节点。这也是非常棒的体验，更多秘密需要去体验，奉上官方地址<br>：<a href="https://docs.cypress.io/" target="_blank" rel="noopener">官网 cypress</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持每日更新, 您的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wx.png" alt="zsirfs 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipy.png" alt="zsirfs 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/iphonex的适配/" rel="next" title="iphonex的适配">
+                <i class="fa fa-chevron-left"></i> iphonex的适配
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/迷幻.jpeg"
+                alt="zsirfs" />
+            
+              <p class="site-author-name" itemprop="name">zsirfs</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zsirfs" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cypress-进行-e2e-测试之理论"><span class="nav-number">1.</span> <span class="nav-text">cypress 进行 e2e 测试之理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本文环境"><span class="nav-number">1.1.</span> <span class="nav-text">本文环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#e2e-简介"><span class="nav-number">1.2.</span> <span class="nav-text">e2e 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cypress"><span class="nav-number">1.3.</span> <span class="nav-text">cypress</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cypress-环境搭建"><span class="nav-number">1.3.1.</span> <span class="nav-text">cypress 环境搭建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cy-visit"><span class="nav-number">1.4.</span> <span class="nav-text">cy.visit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cy-get"><span class="nav-number">1.5.</span> <span class="nav-text">cy.get</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cypress-交互逻辑"><span class="nav-number">1.6.</span> <span class="nav-text">cypress 交互逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cy-type"><span class="nav-number">1.6.1.</span> <span class="nav-text">cy.type</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试输入例如-text-textarea"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">测试输入例如 text, textarea</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试-tabIndex"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">测试 tabIndex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试-input-为日期的"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">测试 input 为日期的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键盘绑定"><span class="nav-number">1.6.1.4.</span> <span class="nav-text">键盘绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对于选择例如-radio-checkbox"><span class="nav-number">1.6.1.5.</span> <span class="nav-text">对于选择例如 radio, checkbox</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时"><span class="nav-number">1.6.2.</span> <span class="nav-text">定时</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cy-wait"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">cy.wait</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cy-clock-和-cy-tick"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">cy.clock 和 cy.tick</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-cypress-的配置"><span class="nav-number">1.6.3.</span> <span class="nav-text">关于 cypress 的配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zsirfs</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script id="ribbon" type="text/javascript" size="300" alpha="0.6"  zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://blog-wangxdog-cn.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://blog.wangxdog.cn/2018/04/24/cypress进行e2e测试-初级篇/';
+          this.page.identifier = '2018/04/24/cypress进行e2e测试-初级篇/';
+          this.page.title = 'cypress进行e2e测试之理论';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://blog-wangxdog-cn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8WJ2HTGOQzaobwbjfoqbttNY-gzGzoHsz", "ol2bJHf88ihfJiV1aqYhn3gF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
